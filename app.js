@@ -9,7 +9,7 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 
-mongoose.connect('mongodb://localhost/members', (err) => {
+mongoose.connect(process.env.DATABASE, (err) => {
   console.log(err ? err : "Database is connected successfully");
 })
 

@@ -9,8 +9,6 @@ module.exports = {
         let payload = await jwt.verify(token, "thisisasecretstring");
         let currUser = await User.findOne({ email: payload.email });
         req.user = payload;
-        req.user.followers = currUser.followers;
-        req.user.favouriteArticles = currUser.favouriteArticles;
         return next();
       }else{
         return res.status(400).json({error: "Token Required"});
@@ -25,9 +23,6 @@ module.exports = {
       if(token){
         let payload = await jwt.verify(token, "thisisasecretstring");
         let currUser = await User.findOne({ email: payload.email });
-        req.user = payload;
-        req.user.followers = currUser.followers;
-        req.user.favouriteArticles = currUser.favouriteArticles;
         next();
       }else{
         req.user = null;
