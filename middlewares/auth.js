@@ -7,7 +7,7 @@ module.exports = {
     try{
       if(token){
         let payload = await jwt.verify(token, "thisisasecretstring");
-        let currUser = await User.findOne({ email: payload.email });
+        console.log(payload);
         req.user = payload;
         return next();
       }else{

@@ -9,6 +9,15 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Members API" });
 });
 
+router.get('/user', auth.verifyToken, async (req, res, next) => {
+  try{
+    let currentUser = await User.findById(req.user.userId);
+    res.status(201).json({ user: currentUser.userJSON() });
+  }catch(error){
+    next(error);
+  }
+});
+
 router.get("/members", async (req, res, next) => {
   try {
     let result = [];
