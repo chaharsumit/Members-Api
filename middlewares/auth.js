@@ -7,7 +7,6 @@ module.exports = {
     try{
       if(token){
         let payload = await jwt.verify(token, "thisisasecretstring");
-        console.log(payload);
         req.user = payload;
         return next();
       }else{
